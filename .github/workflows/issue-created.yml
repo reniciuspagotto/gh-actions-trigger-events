@@ -1,0 +1,17 @@
+name: Issue Created
+
+on:
+  issues:
+    types:
+      - opened
+
+jobs:
+  handle-issue:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Issue Details
+        run: |
+          echo "An issue has been created!"
+          echo "Issue Title: ${{ github.event.issue.title }}"
+          echo "Issue Body: ${{ github.event.issue.body }}"
+          echo "Issue URL: ${{ github.event.issue.html_url }}"
