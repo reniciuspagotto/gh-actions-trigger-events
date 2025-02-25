@@ -1,0 +1,18 @@
+name: Issue Commented
+
+on:
+  issue_comment:
+    types:
+      - created
+
+jobs:
+  execute:
+    name: Get Comment Details
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Comment Details
+        run: |
+          echo "A new comment was added to an issue!"
+          echo "Comment Body: ${{ github.event.comment.body }}"
+          echo "Comment Author: ${{ github.event.comment.user.login }}"
+          echo "Issue URL: ${{ github.event.issue.html_url }}"

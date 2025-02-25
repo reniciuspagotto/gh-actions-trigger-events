@@ -1,0 +1,19 @@
+name: Issue Closed
+
+on:
+  issues:
+    types:
+      - closed
+
+jobs:
+  execute:
+    name: Get Closed Issue Details
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Closed Issue Details
+        run: |
+          echo "An issue has been closed!"
+          echo "Issue Title: ${{ github.event.issue.title }}"
+          echo "Issue Number: ${{ github.event.issue.number }}"
+          echo "Issue URL: ${{ github.event.issue.html_url }}"
+          echo "Closed By: ${{ github.event.sender.login }}"

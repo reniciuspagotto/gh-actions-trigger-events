@@ -6,7 +6,8 @@ on:
       - opened
 
 jobs:
-  handle-issue:
+  execute:
+    name: Get Issue Details
     runs-on: ubuntu-latest
     steps:
       - name: Print Issue Details
