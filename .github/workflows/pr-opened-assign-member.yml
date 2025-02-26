@@ -9,15 +9,16 @@ permissions:
   pull-requests: write
 
 jobs:
-  assign-pr:
+  execute:
+    name: Assign Member
     runs-on: ubuntu-latest
     steps:
       - name: Assign Specific User
-        uses: actions/github-script@v6
+        uses: actions/github-script@v7
         with:
           script: |
             const assignees = ["reniciuspagotto"];
-            await github.rest.issues.addAssignees({
+            await octokit.rest.issues.addAssignees({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: context.payload.pull_request.number,
