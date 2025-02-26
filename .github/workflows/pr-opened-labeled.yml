@@ -1,0 +1,18 @@
+name: Label Added to Pull Request
+
+on:
+  pull_request:
+    types:
+      - labeled
+
+jobs:
+  execute:
+    name: PR Label Added
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Label Name
+        run: echo "Label added - ${{ github.event.label.name }}"
+
+      - name: Run if Specific Label
+        if: github.event.label.name == 'bug'
+        run: echo "The 'bug' label was added to this PR."
