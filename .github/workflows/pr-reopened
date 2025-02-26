@@ -1,0 +1,20 @@
+name: PR Reopened
+
+on:
+  pull_request:
+    types:
+      - reopened
+
+jobs:
+  execute:
+    name: PR Reopened
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print PR Information
+        run: |
+          echo "Pull Request #${{ github.event.pull_request.number }} has been reopened."
+          echo "Title: ${{ github.event.pull_request.title }}"
+          echo "Reopened by: ${{ github.actor }}"
+
+      - name: Perform Action on Reopen
+        run: echo "Executing tasks for the reopened pull request."
