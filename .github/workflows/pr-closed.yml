@@ -1,0 +1,25 @@
+name: PR Closed
+
+on:
+  pull_request:
+    types:
+      - closed
+
+jobs:
+  execute:
+    name: PR Closed
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print PR Information
+        run: |
+          echo "Pull Request #${{ github.event.pull_request.number }} has been closed."
+          echo "Title: ${{ github.event.pull_request.title }}"
+          echo "Closed by: ${{ github.actor }}"
+
+      - name: Merged PR
+        if: ${{ github.event.pull_request.merged }}
+        run: echo "This pull request was merged."
+
+      - name: Non-Merged PR
+        if: ${{ !github.event.pull_request.merged }}
+        run: echo "This pull request was closed but not merged."
