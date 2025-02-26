@@ -1,0 +1,25 @@
+name: Assign Member to Pull Request
+
+on:
+  pull_request:
+    types:
+      - opened
+
+permissions:
+  pull-requests: write
+
+jobs:
+  assign-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Assign Specific User
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const assignees = ["reniciuspagotto"];
+            await github.rest.issues.addAssignees({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.pull_request.number,
+              assignees: assignees,
+            });
