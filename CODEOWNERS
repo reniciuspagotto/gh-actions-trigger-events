@@ -1,0 +1,10 @@
+# Assign the devops team to the entire repository
+* @your-org/devops
+
+# Assign the frontend team to JavaScript files
+*.js @your-org/frontend
+
+# Assign specific team to a directory
+/docs @your-org/docs
+
+* @reniciuspagotto
