@@ -1,15 +1,15 @@
-name: Cron 
+# name: Cron 
 
-on:
-  schedule:
-    - cron: "*/5 * * * *"  # Runs every 5 minutes
+# on:
+#   schedule:
+#     - cron: "*/5 * * * *"  # Runs every 5 minutes
 
-jobs:
-  your-job:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+# jobs:
+#   your-job:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v3
       
-      - name: Run your task
-        run: echo "Running task from schedule trigger"
+#       - name: Run your task
+#         run: echo "Running task from schedule trigger"
