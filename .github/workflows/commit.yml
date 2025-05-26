@@ -1,8 +1,6 @@
 name: Commit Pipeline
 on:
   push:
-    branches:
-      - main
 
 env:
   SHOULD_EXECUTE_JOB: "true"
@@ -13,7 +11,7 @@ jobs:
   execute:
     name: Commit Pipeline
     runs-on: ubuntu-latest
-    if: ${{ env.MY_CONDITION_VARIABLE }}
+    if: ${{ github.ref == 'refs/heads/main' }}
     steps:
       - name: Print Commit Information
         run: |
