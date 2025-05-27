@@ -31,8 +31,15 @@ jobs:
           echo "This step only runs when SHOULD_EXECUTE_STEP is true"
           echo "Current value is: ${{ env.SHOULD_EXECUTE_STEP }}"
 
-      - name: Execute Only on Success
+      - name: Execute Only on Failure
+        id: execute-on-failure
         if: failure()
         run: |
           echo "This step only runs if all previous steps were successful"
           echo "Previous step completed successfully!"
+
+      - name: Run When Previous Skipped
+        if: steps.execute-on-failure.outcome == 'skipped'
+        run: |
+          echo "The previous step was skipped, so this step runs instead"
+          echo "Previous step outcome: ${{ steps.previous-step.outcome }}"
