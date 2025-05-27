@@ -59,6 +59,11 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: [ security, test ]
+    # Do not use always() here to avoid running even after cancellation
+    if: |
+      !cancelled() && 
+      needs.test.result == 'success' && 
+      (needs.security.result == 'success' || needs.security.result == 'skipped')
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
