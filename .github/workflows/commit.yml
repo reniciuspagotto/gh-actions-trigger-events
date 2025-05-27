@@ -42,4 +42,8 @@ jobs:
         if: steps.execute-on-failure.outcome == 'skipped'
         run: |
           echo "The previous step was skipped, so this step runs instead"
-          echo "Previous step outcome: ${{ steps.previous-step.outcome }}"
+          echo "Previous step outcome: ${{ steps.execute-on-failure.outcome }}"
+
+      - name: Final Step
+        run: |
+          echo "Final Step"
