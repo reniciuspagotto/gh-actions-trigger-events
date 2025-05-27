@@ -5,7 +5,7 @@ on:
 env:
   SHOULD_EXECUTE_JOB: "true"
   SHOULD_EXECUTE_STEP: "false"
-  SHOULD_EXECUTE_STEP_CONDITION: "RUNNING"
+  SHOULD_EXECUTE_STEP_CONDITION: "RUN"
 
 jobs:
   execute:
@@ -19,14 +19,20 @@ jobs:
           echo "Commit message: ${{ github.event.head_commit.message }}"
           echo "Committed by: ${{ github.actor }}"
 
-      - name: Conditional Step
+      - name: Should Execute Step
         if: ${{ env.SHOULD_EXECUTE_STEP }}
         run: |
           echo "This step only runs when SHOULD_EXECUTE_STEP is true"
           echo "Current value is: ${{ env.SHOULD_EXECUTE_STEP }}"
 
-      - name: Conditional Step
+      - name: Should Execute Step with Condition RUN
         if: ${{ env.SHOULD_EXECUTE_STEP_CONDITION == 'RUN' }}
         run: |
           echo "This step only runs when SHOULD_EXECUTE_STEP is true"
           echo "Current value is: ${{ env.SHOULD_EXECUTE_STEP }}"
+
+      - name: Execute Only on Success
+        if: failure()
+        run: |
+          echo "This step only runs if all previous steps were successful"
+          echo "Previous step completed successfully!"
