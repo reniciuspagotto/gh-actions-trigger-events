@@ -41,7 +41,7 @@ jobs:
   security:
     runs-on: ubuntu-latest
     needs: test
-    if: ${{ needs.test.result == 'failure' && !cancelled() }}
+    if: ${{ github.ref == 'refs/heads/release' }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -58,7 +58,7 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
-    needs: security
+    needs: [ security, test ]
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
